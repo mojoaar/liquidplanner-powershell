@@ -10,7 +10,6 @@
     Return all tasks that are not marked as done
         Get-LiquidPlannerTask -Filter '?filter[]=is_done%20is%20false'
 #>
-
 function Get-LiquidPlannerTask {
     Param (
         [Parameter(Mandatory=$false)]
