@@ -3,6 +3,8 @@
     Returns tasks from the connected Liquid Planner URL (optionally based on a filter)
 .NOTES
     You must have invoked Set-LiquidPlannerAuth or Set-LiquidPlannerAuthToken prior to executing this cmdlet
+.PARAMETER Filter
+    Parameter to specify filter to use in the query. Optional Parameter.
 .EXAMPLE
     Return the task whose number is exactly 39235958
         Get-LiquidPlannerTask -Filter '?filter[]=id=39235958'
@@ -21,7 +23,6 @@ function Get-LiquidPlannerTask {
     }
     $TaskURL = $Global:LiquidPlannerRESTURL + '/workspaces/' + $Global:LiquidPlannerWorkspace + '/tasks/'
     if ($Filter) {
-        # Example use of filter: '?filter[]=is_done%20is%20false'
         $TaskURL = $TaskURL + $Filter
     }
     $Header = @{
