@@ -21,13 +21,13 @@ ModuleVersion = '0.0.1'
 GUID = '7a1bb6d4-012a-4e66-ae42-4ac7e7fc7d59'
 
 # Author of this module
-Author = 'MortenGJohansen'
+Author = 'Morten G. Johansen'
 
 # Company or vendor of this module
-CompanyName = 'Unknown'
+CompanyName = 'Syspeople'
 
 # Copyright statement for this module
-Copyright = '(c) 2017 MortenGJohansen. All rights reserved.'
+Copyright = '(c) 2017 Morten G. Johansen. All rights reserved.'
 
 # Description of the functionality provided by this module
 # Description = ''
