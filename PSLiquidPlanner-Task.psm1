@@ -1,5 +1,12 @@
 function Get-LiquidPlannerTask {
+    Param (
+        [Parameter(Mandatory=$false)]
+        [int] $Id
+    )
     $TaskURL = $Global:LiquidPlannerRESTURL + '/workspaces/' + $Global:LiquidPlannerWorkspace + '/tasks/'
+    if ($Id) {
+        $TaskURL = $TaskURL + $Id
+    }
     if ($Global:LiquidPlannerWorkspace) {
         $Header = @{
             Authorization = "Bearer $Global:LiquidPlannerToken"
