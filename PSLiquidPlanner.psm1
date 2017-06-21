@@ -1,7 +1,35 @@
-# Implement your module commands in this script.
+function Test-LiquidPlannerNowAuthIsSet{
+    if($Global:LiquidPlannerCredentials){
+        return $true;
+    }else{
+        return $false;
+    }
+}
 
+function Set-LiquidPlannerAuth{
+    param(
+        [parameter(mandatory=$true)]
+        [System.Management.Automation.PSCredential]$Credentials
+    )
+    $Global:LiquidPlannerRESTURL = 'https://app.liquidplanner.com/api'
+    $Global:LiquidPlannerCredentials = $credentials
+    return $true;
+}
 
-# Export only the functions using PowerShell standard verb-noun naming.
-# Be sure to list each exported functions in the FunctionsToExport field of the module manifest file.
-# This improves performance of command discovery in PowerShell.
-Export-ModuleMember -Function *-*
+function Set-LiquidPlannerAuthToken{
+    param(
+        [parameter(mandatory=$true)]
+        [string]$Token
+    )
+    $Global:LiquidPlannerRESTURL = 'https://app.liquidplanner.com/api'
+    $Global:LiquidPlannerToken = $Token
+    return $true;
+}
+
+function Remove-LiquidPlannerAuth{
+
+    Remove-Variable -Name LiquidPlannerRESTURL -Scope Global
+    Remove-Variable -Name LiquidPlannerCredentials -Scope Global
+
+    return $true;
+}
