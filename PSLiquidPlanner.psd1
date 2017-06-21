@@ -30,7 +30,7 @@ CompanyName = 'Syspeople'
 Copyright = '(c) 2017 Morten. All rights reserved.'
 
 # Description of the functionality provided by this module
-# Description = ''
+# Description = 'This module provides cmdlets allowing you to retrieve information from your Liquid Planner rest API'
 
 # Minimum version of the Windows PowerShell engine required by this module
 # PowerShellVersion = ''
@@ -66,7 +66,10 @@ Copyright = '(c) 2017 Morten. All rights reserved.'
 # FormatsToProcess = @()
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
-# NestedModules = @()
+NestedModules = @(
+	'PSLiquidPlanner-Task.psm1',
+	'PSLiquidPlanner-Workspace.psm1'
+)
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 FunctionsToExport = '*'
@@ -101,7 +104,7 @@ PrivateData = @{
         # LicenseUri = ''
 
         # A URL to the main website for this project.
-        # ProjectUri = ''
+        # ProjectUri = 'https://github.com/mgjohansen/liquidplanner-powershell'
 
         # A URL to an icon representing this module.
         # IconUri = ''
@@ -114,7 +117,7 @@ PrivateData = @{
 } # End of PrivateData hashtable
 
 # HelpInfo URI of this module
-# HelpInfoURI = ''
+# HelpInfoURI = 'https://github.com/mgjohansen/liquidplanner-powershell'
 
 # Default prefix for commands exported from this module. Override the default prefix using Import-Module -Prefix.
 # DefaultCommandPrefix = ''
