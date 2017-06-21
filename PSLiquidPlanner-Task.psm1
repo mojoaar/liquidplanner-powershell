@@ -14,7 +14,10 @@ function Get-LiquidPlannerTask {
     } elseif ($Id -and $Filter) {
         $TaskURL = $TaskURL + $Id + $Filter
     }
-
+    $Header = @{
+        Authorization = "Bearer $Global:LiquidPlannerToken"
+        Accept = "*/*"
+    }
     $Result = Invoke-RestMethod -Method Get -Uri $TaskURL -ContentType "application/json" -Headers $Header
     return $Result
 }
