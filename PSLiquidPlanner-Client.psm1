@@ -1,8 +1,10 @@
 <#
 .SYNOPSIS
-   Returns clients from the connected Liquid Planner URL (optionally based on a name)
+    Returns clients from the connected Liquid Planner URL (optionally based on a name)
 .NOTES
-   You must have invoked Set-LiquidPlannerAuth or Set-LiquidPlannerAuthToken prior to executing this cmdlet
+    You must have invoked Set-LiquidPlannerAuth or Set-LiquidPlannerAuthToken prior to executing this cmdlet
+.PARAMETER Name
+    Parameter to specify the name to search for. Operator is a contains condition. Optional Parameter.
 .EXAMPLE
     Return clients that contains the name Client ABC
         Get-LiquidPlannerClient -Name 'Client ABC'
