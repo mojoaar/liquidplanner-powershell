@@ -8,6 +8,8 @@ function Get-LiquidPlannerTask {
     $TaskURL = $Global:LiquidPlannerRESTURL + '/workspaces/' + $Global:LiquidPlannerWorkspace + '/tasks/'
     if ($Id) {
         $TaskURL = $TaskURL + $Id
+    } elseif ($Filter) {
+        $TaskURL = $TaskURL + $Filter
     } elseif ($Id -and $Filter) {
         $TaskURL = $TaskURL + $Id + $Filter
     }
