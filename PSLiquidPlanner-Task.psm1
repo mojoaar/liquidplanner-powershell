@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
-   Returns tasks from the connected Liquid Planner URL (optionally based on a filter)
+    Returns tasks from the connected Liquid Planner URL (optionally based on a filter)
 .NOTES
-   You must have invoked Set-LiquidPlannerAuth or Set-LiquidPlannerAuthToken prior to executing this cmdlet
+    You must have invoked Set-LiquidPlannerAuth or Set-LiquidPlannerAuthToken prior to executing this cmdlet
 .EXAMPLE
     Return the task whose number is exactly 39235958
         Get-LiquidPlannerTask -Filter '?filter[]=id=39235958'
