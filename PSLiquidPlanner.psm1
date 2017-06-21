@@ -1,4 +1,4 @@
-function Test-LiquidPlannerNowAuthIsSet{
+function Test-LiquidPlannerAuthIsSet{
     if($Global:LiquidPlannerCredentials){
         return $true;
     }else{
@@ -12,7 +12,7 @@ function Set-LiquidPlannerAuth{
         [System.Management.Automation.PSCredential]$Credentials
     )
     $Global:LiquidPlannerRESTURL = 'https://app.liquidplanner.com/api'
-    $Global:LiquidPlannerCredentials = $credentials
+    $Global:LiquidPlannerCredentials = $Credentials
     return $true;
 }
 
