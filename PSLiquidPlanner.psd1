@@ -69,7 +69,7 @@ Copyright = '(c) 2017 Morten. All rights reserved.'
 NestedModules = @(
 	'PSLiquidPlanner-Task.psm1',
 	'PSLiquidPlanner-Workspace.psm1',
-    '.\PSLiquidPlanner-Client.psm1'
+    'PSLiquidPlanner-Client.psm1'
 )
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
