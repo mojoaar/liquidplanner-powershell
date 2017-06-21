@@ -4,7 +4,7 @@
 .NOTES
    You must have invoked Set-LiquidPlannerAuth or Set-LiquidPlannerAuthToken prior to executing this cmdlet
 .EXAMPLE
-    Return the incident whose number is exactly INC0010683
+    Return the task whose number is exactly 39235958
         Get-LiquidPlannerTask -Filter '?filter[]=id=39235958'
 .EXAMPLE
     Return all tasks that are not marked as done
