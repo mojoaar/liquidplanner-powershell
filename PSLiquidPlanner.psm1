@@ -1,5 +1,5 @@
 function Test-LiquidPlannerAuthIsSet{
-    if($Global:LiquidPlannerCredentials){
+    if($Global:LiquidPlannerCredentials -or $Global:LiquidPlannerToken){
         return $true;
     }else{
         return $false;
