@@ -21,14 +21,14 @@ function Get-LiquidPlannerClient {
         'You need to set the Workspace Id with Set-LiquidPlannerWorkspace'
         break
     }
-    $TaskURL = $Global:LiquidPlannerRESTURL + '/workspaces/' + $Global:LiquidPlannerWorkspace + '/clients/'
+    $ClientURL = $Global:LiquidPlannerRESTURL + '/workspaces/' + $Global:LiquidPlannerWorkspace + '/clients/'
     if ($Name) {
-        $TaskURL = $TaskURL + '?filter[]=name%20contains%20' + $Name
+        $ClientURL = $ClientURL + '?filter[]=name%20contains%20' + $Name
     }
     $Header = @{
         Authorization = "Bearer $Global:LiquidPlannerToken"
         Accept = "*/*"
     }
-    $Result = Invoke-RestMethod -Method Get -Uri $TaskURL -ContentType "application/json" -Headers $Header
+    $Result = Invoke-RestMethod -Method Get -Uri $ClientURL -ContentType "application/json" -Headers $Header
     return $Result
 }
