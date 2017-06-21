@@ -33,7 +33,7 @@ Copyright = '(c) 2017 Morten. All rights reserved.'
 # Description = 'This module provides cmdlets allowing you to retrieve information from your Liquid Planner rest API'
 
 # Minimum version of the Windows PowerShell engine required by this module
-# PowerShellVersion = ''
+# PowerShellVersion = '3.0'
 
 # Name of the Windows PowerShell host required by this module
 # PowerShellHostName = ''
@@ -68,7 +68,8 @@ Copyright = '(c) 2017 Morten. All rights reserved.'
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
 NestedModules = @(
 	'PSLiquidPlanner-Task.psm1',
-	'PSLiquidPlanner-Workspace.psm1'
+	'PSLiquidPlanner-Workspace.psm1',
+    '.\PSLiquidPlanner-Client.psm1'
 )
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
