@@ -9,6 +9,7 @@ function Get-LiquidPlannerTask {
     if ($Id) {
         $TaskURL = $TaskURL + $Id
     } elseif ($Filter) {
+        # Example use of filter: '?filter[]=is_done%20is%20false'
         $TaskURL = $TaskURL + $Filter
     } elseif ($Id -and $Filter) {
         $TaskURL = $TaskURL + $Id + $Filter
