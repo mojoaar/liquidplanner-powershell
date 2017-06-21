@@ -15,6 +15,10 @@ function Get-LiquidPlannerTask {
         [Parameter(Mandatory=$false)]
         [string] $Filter
     )
+    if (-not $Global:LiquidPlannerWorkspace) {
+        'You need to set the Workspace Id with Set-LiquidPlannerWorkspace'
+        break
+    }
     $TaskURL = $Global:LiquidPlannerRESTURL + '/workspaces/' + $Global:LiquidPlannerWorkspace + '/tasks/'
     if ($Filter) {
         # Example use of filter: '?filter[]=is_done%20is%20false'
