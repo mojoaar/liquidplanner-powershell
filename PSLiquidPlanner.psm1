@@ -30,6 +30,7 @@ function Remove-LiquidPlannerAuth{
 
     Remove-Variable -Name LiquidPlannerRESTURL -Scope Global
     Remove-Variable -Name LiquidPlannerCredentials -Scope Global
-
+    Remove-Variable -Name LiquidPlannerToken -Scope Global
+    Remove-Variable -Name LiquidPlannerWorkspace -Scope Global
     return $true;
 }

@@ -9,3 +9,12 @@ function Get-LiquidPlannerWorkspace {
     }
     return $Result
 }
+
+function Set-LiquidPlannerWorkspace {
+    Param (
+        [Parameter(Mandatory=$true)]
+        [String] $Id
+    )
+    $Global:LiquidPlannerWorkspace = $Id
+    return $true;
+}
