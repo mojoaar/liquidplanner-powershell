@@ -49,10 +49,10 @@ function New-LiquidPlannerTask {
         Accept = "*/*"
     }
     $Body = @{
-    task = @{
-        name = "$Name"
-        description = "$Description"
-    }
+        task = @{
+            name = "$Name"
+            description = "$Description"
+        }
     }
     $Body = ConvertTo-Json -InputObject $Body -Depth 10
     $Result = Invoke-RestMethod -Method Post -uri $TaskURL -ContentType "application/json" -Headers $Header -Body $Body
