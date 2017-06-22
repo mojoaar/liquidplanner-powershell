@@ -6,9 +6,24 @@
         Test-LiquidPlannerAuthIsSet
 #>
 function Test-LiquidPlannerAuthIsSet {
-    if($Global:LiquidPlannerCredentials -or $Global:LiquidPlannerToken){
+    if ($Global:LiquidPlannerCredentials -or $Global:LiquidPlannerToken) {
         return $true;
-    }else{
+    } else {
+        return $false;
+    }
+}
+
+<#
+.SYNOPSIS
+    Test if a workspace id is set in the current session
+.EXAMPLE
+    Will check if a workspace id is set
+        Test-LiquidPlannerWorkspaceIdIsSet
+#>
+function Test-LiquidPlannerWorkspaceIdIsSet {
+    if ($Global:LiquidPlannerWorkspace) {
+        return $true;
+    } else {
         return $false;
     }
 }
