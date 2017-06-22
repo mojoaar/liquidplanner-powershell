@@ -20,6 +20,7 @@ Once you've done this, all the cmdlets will be at your disposal, you can see a f
 * Set-LiquidPlannerAuthToken
 * Set-LiquidPlannerWorkspace
 * Test-LiquidPlannerAuthIsSet
+* Test-LiquidPlannerWorkspaceIdIsSet
 
 ## Author
 Author: Morten G. Johansen (<morten@glerupjohansen.dk>)
