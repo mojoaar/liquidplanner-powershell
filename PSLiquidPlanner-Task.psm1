@@ -33,6 +33,19 @@ function Get-LiquidPlannerTask {
     return $Result
 }
 
+<#
+.SYNOPSIS
+    Creates new task in the connected Liquid Planner URL
+.NOTES
+    You must have invoked Set-LiquidPlannerAuth or Set-LiquidPlannerAuthToken prior to executing this cmdlet
+.PARAMETER Name
+    Parameter to set the name of the new Liquid Planner task. Mandatory Parameter.
+.PARAMETER Description
+    Parameter to set the description of the new Liquid Planner task. Mandatory Parameter.
+.EXAMPLE
+    Creates a new task with the name Testing and a description saying Just a test
+        New-LiquidPlannerTask -Name 'Testing' -Description 'Just a test'
+#>
 function New-LiquidPlannerTask {
     Param (
         [Parameter(Mandatory=$true)]
