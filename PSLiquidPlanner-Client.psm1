@@ -8,11 +8,11 @@
 .PARAMETER Filter
     Parameter to specify filter to use in the query. Optional Parameter.
 .EXAMPLE
+    Get-LiquidPlannerClient -Name 'Client ABC'
     Return clients that contains the name Client ABC
-        Get-LiquidPlannerClient -Name 'Client ABC'
 .EXAMPLE
+    Get-LiquidPlannerClient -Filter '?filter[]=name%20contains%20Microsoft'
     Return clients that contains the name Microsoft
-        Get-LiquidPlannerClient -Filter '?filter[]=name%20contains%20Microsoft'
 #>
 function Get-LiquidPlannerClient {
     Param (
@@ -31,10 +31,14 @@ function Get-LiquidPlannerClient {
     } elseif ($Filter) {
         $ClientURL = $ClientURL + $Filter
     }
-    $Header = @{
-        Authorization = "Bearer $Global:LiquidPlannerToken"
-        Accept = "*/*"
+    if ($Global:LiquidPlannerToken) {
+        $Header = @{
+            Authorization = "Bearer $Global:LiquidPlannerToken"
+            Accept = "*/*"
+        }
+        $Result = Invoke-RestMethod -Method Get -Uri $WorkspaceURL -ContentType "application/json" -Headers $Header
+    } else {
+        $Result = Invoke-RestMethod -Method Get -Uri $WorkspaceURL -ContentType "application/json" -Credential $Global:LiquidPlannerCredentials
     }
-    $Result = Invoke-RestMethod -Method Get -Uri $ClientURL -ContentType "application/json" -Headers $Header
     return $Result
 }
