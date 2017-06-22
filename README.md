@@ -11,6 +11,7 @@ Once you've done this, all the cmdlets will be at your disposal, you can see a f
 
 ## Cmdlets
 * Get-LiquidPlannerClient
+* Get-LiquidPlannerMember
 * Get-LiquidPlannerTask
 * Get-LiquidPlannerWorkspace
 * New-LiquidPlannerTask
