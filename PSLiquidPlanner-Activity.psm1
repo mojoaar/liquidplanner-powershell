@@ -8,6 +8,10 @@
     Will get all activities of the connected Liquid Planner URL
 #>
 function Get-LiquidPlannerActivity {
+    if (-not $Global:LiquidPlannerWorkspace) {
+        'You need to set the Workspace Id with Set-LiquidPlannerWorkspace'
+        break
+    }
     $ActivityURL = $Global:LiquidPlannerRESTURL + '/workspaces/' + $Global:LiquidPlannerWorkspace + '/activities/'
     if ($Global:LiquidPlannerToken) {
         $Header = @{
