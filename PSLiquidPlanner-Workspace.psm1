@@ -4,8 +4,8 @@
 .NOTES
     You must have invoked Set-LiquidPlannerAuth or Set-LiquidPlannerAuthToken prior to executing this cmdlet
 .EXAMPLE
+    Get-LiquidPlannerWorkspace
     Will get all the workspaces of the connected Liquid Planner URL
-        Get-LiquidPlannerWorkspace
 #>
 function Get-LiquidPlannerWorkspace {
     $WorkspaceURL = $Global:LiquidPlannerRESTURL + '/workspaces/'
@@ -15,7 +15,10 @@ function Get-LiquidPlannerWorkspace {
             Accept = "*/*"
         }
         $Result = Invoke-RestMethod -Method Get -Uri $WorkspaceURL -ContentType "application/json" -Headers $Header
+    } else {
+        $Result = Invoke-RestMethod -Method Get -Uri $WorkspaceURL -ContentType "application/json" -Headers $Header -Credential $Global:LiquidPlannerCredentials
     }
+    $Result = Invoke-RestMethod -Method Get -Uri $WorkspaceURL -ContentType "application/json" -Headers $Header
     return $Result
 }
 
