@@ -29,8 +29,8 @@ function Get-LiquidPlannerWorkspace {
 .PARAMETER Id
     Parameter to specify workspace Id to work in. Mandatory Parameter.
 .EXAMPLE
+    Set-LiquidPlannerWorkspace -Id '123456'
     Will set the workspace id to 123456
-        Set-LiquidPlannerWorkspace -Id '123456'
 #>
 function Set-LiquidPlannerWorkspace {
     Param (
