@@ -1,3 +1,12 @@
+<#
+.SYNOPSIS
+    Get the workspaces from the connected Liquid Planner URL
+.NOTES
+    You must have invoked Set-LiquidPlannerAuth or Set-LiquidPlannerAuthToken prior to executing this cmdlet
+.EXAMPLE
+    Will get all the workspaces of the connected Liquid Planner URL
+        Get-LiquidPlannerWorkspace
+#>
 function Get-LiquidPlannerWorkspace {
     $WorkspaceURL = $Global:LiquidPlannerRESTURL + '/workspaces/'
     if ($Global:LiquidPlannerToken) {
@@ -10,6 +19,17 @@ function Get-LiquidPlannerWorkspace {
     return $Result
 }
 
+<#
+.SYNOPSIS
+    Set the workspaces from the connected Liquid Planner URL
+.NOTES
+    You must have invoked Set-LiquidPlannerAuth or Set-LiquidPlannerAuthToken prior to executing this cmdlet
+.PARAMETER Id
+    Parameter to specify workspace Id to work in. Mandatory Parameter.
+.EXAMPLE
+    Will set the workspace id to 123456
+        Set-LiquidPlannerWorkspace -Id '123456'
+#>
 function Set-LiquidPlannerWorkspace {
     Param (
         [Parameter(Mandatory=$true)]
