@@ -6,11 +6,11 @@
 .PARAMETER Filter
     Parameter to specify filter to use in the query. Optional Parameter.
 .EXAMPLE
+    Get-LiquidPlannerTask -Filter '?filter[]=id=39235958'
     Return the task whose number is exactly 39235958
-        Get-LiquidPlannerTask -Filter '?filter[]=id=39235958'
 .EXAMPLE
+    Get-LiquidPlannerTask -Filter '?filter[]=is_done%20is%20false'
     Return all tasks that are not marked as done
-        Get-LiquidPlannerTask -Filter '?filter[]=is_done%20is%20false'
 #>
 function Get-LiquidPlannerTask {
     Param (
@@ -25,11 +25,15 @@ function Get-LiquidPlannerTask {
     if ($Filter) {
         $TaskURL = $TaskURL + $Filter
     }
-    $Header = @{
-        Authorization = "Bearer $Global:LiquidPlannerToken"
-        Accept = "*/*"
+    if ($Global:LiquidPlannerToken) {
+        $Header = @{
+            Authorization = "Bearer $Global:LiquidPlannerToken"
+            Accept = "*/*"
+        }
+        $Result = Invoke-RestMethod -Method Get -Uri $TaskURL -ContentType "application/json" -Headers $Header
+    } else {
+        $Result = Invoke-RestMethod -Method Get -Uri $TaskURL -ContentType "application/json" -Credential $Global:LiquidPlannerCredentials
     }
-    $Result = Invoke-RestMethod -Method Get -Uri $TaskURL -ContentType "application/json" -Headers $Header
     return $Result
 }
 
@@ -43,8 +47,8 @@ function Get-LiquidPlannerTask {
 .PARAMETER Description
     Parameter to set the description of the new Liquid Planner task. Mandatory Parameter.
 .EXAMPLE
+    New-LiquidPlannerTask -Name 'Testing' -Description 'Just a test'
     Creates a new task with the name Testing and a description saying Just a test
-        New-LiquidPlannerTask -Name 'Testing' -Description 'Just a test'
 #>
 function New-LiquidPlannerTask {
     Param (
@@ -58,10 +62,6 @@ function New-LiquidPlannerTask {
         break
     }
     $TaskURL = $Global:LiquidPlannerRESTURL + '/workspaces/' + $Global:LiquidPlannerWorkspace + '/tasks/'
-    $Header = @{
-        Authorization = "Bearer $Global:LiquidPlannerToken"
-        Accept = "*/*"
-    }
     $Body = @{
         task = @{
             name = "$Name"
@@ -69,6 +69,14 @@ function New-LiquidPlannerTask {
         }
     }
     $Body = ConvertTo-Json -InputObject $Body -Depth 10
-    $Result = Invoke-RestMethod -Method Post -uri $TaskURL -ContentType "application/json" -Headers $Header -Body $Body
+    if ($Global:LiquidPlannerToken) {
+        $Header = @{
+            Authorization = "Bearer $Global:LiquidPlannerToken"
+            Accept = "*/*"
+        }
+        $Result = Invoke-RestMethod -Method Post -Uri $TaskURL -ContentType "application/json" -Headers $Header -Body $Body
+    } else {
+        $Result = Invoke-RestMethod -Method Post -Uri $TaskURL -ContentType "application/json" -Credential $Global:LiquidPlannerCredentials -Body $Body
+    }
     return $Result
 }

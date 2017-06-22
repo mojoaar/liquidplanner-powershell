@@ -36,9 +36,9 @@ function Get-LiquidPlannerClient {
             Authorization = "Bearer $Global:LiquidPlannerToken"
             Accept = "*/*"
         }
-        $Result = Invoke-RestMethod -Method Get -Uri $WorkspaceURL -ContentType "application/json" -Headers $Header
+        $Result = Invoke-RestMethod -Method Get -Uri $ClientURL -ContentType "application/json" -Headers $Header
     } else {
-        $Result = Invoke-RestMethod -Method Get -Uri $WorkspaceURL -ContentType "application/json" -Credential $Global:LiquidPlannerCredentials
+        $Result = Invoke-RestMethod -Method Get -Uri $ClientURL -ContentType "application/json" -Credential $Global:LiquidPlannerCredentials
     }
     return $Result
 }
