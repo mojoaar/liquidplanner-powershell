@@ -9,6 +9,10 @@
 #>
 function Get-LiquidPlannerWorkspace {
     $WorkspaceURL = $Global:LiquidPlannerRESTURL + '/workspaces/'
+    if (-not $Global:LiquidPlannerCredentials -or $Global:LiquidPlannerToken) {
+        'You need to set the Authorization before running Get-LiquidPlannerWorkspace'
+        break
+    }
     if ($Global:LiquidPlannerToken) {
         $Header = @{
             Authorization = "Bearer $Global:LiquidPlannerToken"
