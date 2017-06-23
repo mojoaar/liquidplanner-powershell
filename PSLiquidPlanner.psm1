@@ -1,5 +1,20 @@
 <#
 .SYNOPSIS
+    Test if auth & workspace id is set in the current session
+.EXAMPLE
+    Test-LiquidPlannerEnvironment
+    Will check if auth & workspace id is set
+#>
+function Test-LiquidPlannerEnvironment {
+    if ($Global:LiquidPlannerCredentials -or $Global:LiquidPlannerToken -and $Global:LiquidPlannerWorkspace) {
+        return $true;
+    } else {
+        return $false;
+    }
+}
+
+<#
+.SYNOPSIS
     Test if auth is set in the current session
 .EXAMPLE
     Test-LiquidPlannerAuthIsSet
@@ -72,13 +87,21 @@ function Set-LiquidPlannerAuthToken {
 .SYNOPSIS
     Removes all Liquid Planner related variables
 .EXAMPLE
-    Remove-LiquidPlannerAuth
+    Remove-LiquidPlannerEnvironment
     Will clean your environment and remove all Liquid Planner Global variables
 #>
-function Remove-LiquidPlannerAuth {
-    Remove-Variable -Name LiquidPlannerRESTURL -Scope Global
-    Remove-Variable -Name LiquidPlannerCredentials -Scope Global
-    Remove-Variable -Name LiquidPlannerToken -Scope Global
-    Remove-Variable -Name LiquidPlannerWorkspace -Scope Global
+function Remove-LiquidPlannerEnvironment {
+    if ($Global:LiquidPlannerRESTURL) {
+        Remove-Variable -Name LiquidPlannerRESTURL -Scope Global
+    }
+    if ($Global:LiquidPlannerCredentials) {
+        Remove-Variable -Name LiquidPlannerCredentials -Scope Global
+    }
+    if ($Global:LiquidPlannerToken) {
+        Remove-Variable -Name LiquidPlannerToken -Scope Global
+    }
+    if ($Global:LiquidPlannerWorkspace) {
+        Remove-Variable -Name LiquidPlannerWorkspace -Scope Global
+    }
     return $true;
 }
