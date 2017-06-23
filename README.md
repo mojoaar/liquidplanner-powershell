@@ -16,11 +16,12 @@ Once you've done this, all the cmdlets will be at your disposal, you can see a f
 * Get-LiquidPlannerTask
 * Get-LiquidPlannerWorkspace
 * New-LiquidPlannerTask
-* Remove-LiquidPlannerAuth
+* Remove-LiquidPlannerEnvironment
 * Set-LiquidPlannerAuth
 * Set-LiquidPlannerAuthToken
 * Set-LiquidPlannerWorkspace
 * Test-LiquidPlannerAuthIsSet
+* Test-LiquidPlannerEnvironment
 * Test-LiquidPlannerWorkspaceIdIsSet
 
 ## Author
