@@ -36,6 +36,9 @@ function Get-LiquidPlannerWorkspace {
 .EXAMPLE
     Set-LiquidPlannerWorkspace -Id '123456'
     Will set the workspace id to 123456
+.EXAMPLE
+    Set-LiquidPlannerWorkspace -Id (Get-LiquidPlannerWorkspace).id
+    If you only have one Liquid Planner workspace you can set the id like this
 #>
 function Set-LiquidPlannerWorkspace {
     Param (
