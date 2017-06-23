@@ -13,7 +13,7 @@
     Return all tasks that are not marked as done
 .EXAMPLE
     Get-LiquidPlannerTask -ProjectId '36828051'
-    Return all task that belongs to project 36828051
+    Return all tasks that belongs to project 36828051
 #>
 function Get-LiquidPlannerTask {
     Param (
