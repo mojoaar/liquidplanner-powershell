@@ -11,11 +11,16 @@
 .EXAMPLE
     Get-LiquidPlannerTask -Filter '?filter[]=is_done%20is%20false'
     Return all tasks that are not marked as done
+.EXAMPLE
+    Get-LiquidPlannerTask -ProjectId '36828051'
+    Return all task that belongs to project 36828051
 #>
 function Get-LiquidPlannerTask {
     Param (
         [Parameter(Mandatory=$false)]
-        [string] $Filter
+        [string] $Filter,
+        [Parameter(Mandatory=$false)]
+        [int] $ProjectId
     )
     if (-not $Global:LiquidPlannerWorkspace) {
         'You need to set the Workspace Id with Set-LiquidPlannerWorkspace'
@@ -24,6 +29,8 @@ function Get-LiquidPlannerTask {
     $TaskURL = $Global:LiquidPlannerRESTURL + '/workspaces/' + $Global:LiquidPlannerWorkspace + '/tasks/'
     if ($Filter) {
         $TaskURL = $TaskURL + $Filter
+    } elseif ($ProjectId) {
+        $TaskURL = $TaskURL + '?filter[]=project_id=' + $Filter
     }
     if ($Global:LiquidPlannerToken) {
         $Header = @{
