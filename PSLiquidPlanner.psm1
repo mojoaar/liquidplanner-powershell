@@ -76,7 +76,6 @@ function Set-LiquidPlannerAuthToken {
     Will clean your environment and remove all Liquid Planner Global variables
 #>
 function Remove-LiquidPlannerAuth {
-
     Remove-Variable -Name LiquidPlannerRESTURL -Scope Global
     Remove-Variable -Name LiquidPlannerCredentials -Scope Global
     Remove-Variable -Name LiquidPlannerToken -Scope Global
