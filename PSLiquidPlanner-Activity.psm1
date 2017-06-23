@@ -4,7 +4,7 @@
 .NOTES
     You must have invoked Set-LiquidPlannerAuth or Set-LiquidPlannerAuthToken prior to executing this cmdlet
 .EXAMPLE
-    Get-Get-LiquidPlannerActivity
+    Get-LiquidPlannerActivity
     Will get all activities of the connected Liquid Planner URL
 #>
 function Get-LiquidPlannerActivity {
