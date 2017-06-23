@@ -126,5 +126,3 @@ HelpInfoURI = 'https://github.com/mgjohansen/liquidplanner-powershell'
 # DefaultCommandPrefix = ''
 
 }
-
-
