@@ -30,7 +30,7 @@ function Get-LiquidPlannerTask {
     if ($Filter) {
         $TaskURL = $TaskURL + $Filter
     } elseif ($ProjectId) {
-        $TaskURL = $TaskURL + '?filter[]=project_id=' + $Filter
+        $TaskURL = $TaskURL + '?filter[]=project_id=' + $ProjectId
     }
     if ($Global:LiquidPlannerToken) {
         $Header = @{
