@@ -2,8 +2,8 @@
 .SYNOPSIS
     Test if auth is set in the current session
 .EXAMPLE
+    Test-LiquidPlannerAuthIsSet
     Will check if auth is set either from credentials or a token
-        Test-LiquidPlannerAuthIsSet
 #>
 function Test-LiquidPlannerAuthIsSet {
     if ($Global:LiquidPlannerCredentials -or $Global:LiquidPlannerToken) {
@@ -17,8 +17,8 @@ function Test-LiquidPlannerAuthIsSet {
 .SYNOPSIS
     Test if a workspace id is set in the current session
 .EXAMPLE
+    Test-LiquidPlannerWorkspaceIdIsSet
     Will check if a workspace id is set
-        Test-LiquidPlannerWorkspaceIdIsSet
 #>
 function Test-LiquidPlannerWorkspaceIdIsSet {
     if ($Global:LiquidPlannerWorkspace) {
@@ -34,8 +34,8 @@ function Test-LiquidPlannerWorkspaceIdIsSet {
 .PARAMETER Creadentials
     Parameter to specify the credentials to use. Mandatory Parameter.
 .EXAMPLE
+    Set-LiquidPlannerAuth -Credentials 'user@company.com'
     Set the credentials to user@company.com
-        Set-LiquidPlannerAuth -Credentials 'user@company.com'
 #>
 function Set-LiquidPlannerAuth {
     param(
@@ -55,8 +55,8 @@ function Set-LiquidPlannerAuth {
 .PARAMETER Token
     Parameter to specify filter to use in the query. Optional Parameter.
 .EXAMPLE
+    Set-LiquidPlannerAuthToken -Token '12a3bc4d-5678-9e0f-8c92-8affa74dd371'
     Set's the auth token to 12a3bc4d-5678-9e0f-8c92-8affa74dd371
-        Set-LiquidPlannerAuthToken -Token '12a3bc4d-5678-9e0f-8c92-8affa74dd371'
 #>
 function Set-LiquidPlannerAuthToken {
     param(
@@ -72,8 +72,8 @@ function Set-LiquidPlannerAuthToken {
 .SYNOPSIS
     Removes all Liquid Planner related variables
 .EXAMPLE
+    Remove-LiquidPlannerAuth
     Will clean your environment and remove all Liquid Planner Global variables
-        Remove-LiquidPlannerAuth
 #>
 function Remove-LiquidPlannerAuth {
 
