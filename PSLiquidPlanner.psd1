@@ -30,10 +30,10 @@ CompanyName = 'Syspeople'
 Copyright = '(c) 2017 Morten. All rights reserved.'
 
 # Description of the functionality provided by this module
-# Description = 'This module provides cmdlets allowing you to retrieve information from your Liquid Planner rest API'
+Description = 'This module provides cmdlets allowing you to retrieve information from your Liquid Planner rest API'
 
 # Minimum version of the Windows PowerShell engine required by this module
-# PowerShellVersion = '3.0'
+PowerShellVersion = '3.0'
 
 # Name of the Windows PowerShell host required by this module
 # PowerShellHostName = ''
@@ -120,7 +120,7 @@ PrivateData = @{
 } # End of PrivateData hashtable
 
 # HelpInfo URI of this module
-# HelpInfoURI = 'https://github.com/mgjohansen/liquidplanner-powershell'
+HelpInfoURI = 'https://github.com/mgjohansen/liquidplanner-powershell'
 
 # Default prefix for commands exported from this module. Override the default prefix using Import-Module -Prefix.
 # DefaultCommandPrefix = ''
