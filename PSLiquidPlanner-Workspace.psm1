@@ -9,7 +9,14 @@
 #>
 function Get-LiquidPlannerWorkspace {
     $WorkspaceURL = $Global:LiquidPlannerRESTURL + '/workspaces/'
-    if ($Global:LiquidPlannerCredentials -or $Global:LiquidPlannerToken) {
+    if (-not $Global:LiquidPlannerCredentials -or $Global:LiquidPlannerToken) {
+        'You need to set the Authorization with Set-LiquidPlannerAuthToken or Set-LiquidPlannerAuth'
+        break
+    }
+    if (-not $Global:LiquidPlannerWorkspace) {
+        'You need to set the Workspace Id with Set-LiquidPlannerWorkspace'
+        break
+    }
     if ($Global:LiquidPlannerToken) {
         $Header = @{
             Authorization = "Bearer $Global:LiquidPlannerToken"
@@ -20,10 +27,6 @@ function Get-LiquidPlannerWorkspace {
         $Result = Invoke-RestMethod -Method Get -Uri $WorkspaceURL -ContentType "application/json" -Credential $Global:LiquidPlannerCredentials
     }
     return $Result
-    } else {
-        'You need to set the Authorization before running Get-LiquidPlannerWorkspace'
-        break
-    }
 }
 
 <#

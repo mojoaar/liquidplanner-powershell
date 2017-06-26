@@ -22,6 +22,10 @@ function Get-LiquidPlannerTask {
         [Parameter(Mandatory=$false)]
         [int] $ProjectId
     )
+    if (-not $Global:LiquidPlannerCredentials -or $Global:LiquidPlannerToken) {
+        'You need to set the Authorization with Set-LiquidPlannerAuthToken or Set-LiquidPlannerAuth'
+        break
+    }
     if (-not $Global:LiquidPlannerWorkspace) {
         'You need to set the Workspace Id with Set-LiquidPlannerWorkspace'
         break
@@ -64,6 +68,10 @@ function New-LiquidPlannerTask {
         [Parameter(Mandatory=$true)]
         [string] $Description
     )
+    if (-not $Global:LiquidPlannerCredentials -or $Global:LiquidPlannerToken) {
+        'You need to set the Authorization with Set-LiquidPlannerAuthToken or Set-LiquidPlannerAuth'
+        break
+    }
     if (-not $Global:LiquidPlannerWorkspace) {
         'You need to set the Workspace Id with Set-LiquidPlannerWorkspace'
         break

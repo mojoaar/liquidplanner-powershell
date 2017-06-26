@@ -21,6 +21,10 @@ function Get-LiquidPlannerClient {
         [Parameter(Mandatory=$false)]
         [string] $Filter
     )
+    if (-not $Global:LiquidPlannerCredentials -or $Global:LiquidPlannerToken) {
+        'You need to set the Authorization with Set-LiquidPlannerAuthToken or Set-LiquidPlannerAuth'
+        break
+    }
     if (-not $Global:LiquidPlannerWorkspace) {
         'You need to set the Workspace Id with Set-LiquidPlannerWorkspace'
         break
