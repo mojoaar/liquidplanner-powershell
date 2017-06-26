@@ -22,7 +22,7 @@ function Get-LiquidPlannerTask {
         [Parameter(Mandatory=$false)]
         [int] $ProjectId
     )
-    if (-not $Global:LiquidPlannerCredentials -or $Global:LiquidPlannerToken) {
+    if ((Test-LiquidPlannerAuthIsSet) -eq $false) {
         'You need to set the Authorization with Set-LiquidPlannerAuthToken or Set-LiquidPlannerAuth'
         break
     }
@@ -68,7 +68,7 @@ function New-LiquidPlannerTask {
         [Parameter(Mandatory=$true)]
         [string] $Description
     )
-    if (-not $Global:LiquidPlannerCredentials -or $Global:LiquidPlannerToken) {
+    if ((Test-LiquidPlannerAuthIsSet) -eq $false) {
         'You need to set the Authorization with Set-LiquidPlannerAuthToken or Set-LiquidPlannerAuth'
         break
     }

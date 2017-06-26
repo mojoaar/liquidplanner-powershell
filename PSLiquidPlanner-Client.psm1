@@ -21,7 +21,7 @@ function Get-LiquidPlannerClient {
         [Parameter(Mandatory=$false)]
         [string] $Filter
     )
-    if (-not $Global:LiquidPlannerCredentials -or $Global:LiquidPlannerToken) {
+    if ((Test-LiquidPlannerAuthIsSet) -eq $false) {
         'You need to set the Authorization with Set-LiquidPlannerAuthToken or Set-LiquidPlannerAuth'
         break
     }

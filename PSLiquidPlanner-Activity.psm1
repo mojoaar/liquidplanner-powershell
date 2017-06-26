@@ -8,7 +8,7 @@
     Will get all activities of the connected Liquid Planner URL
 #>
 function Get-LiquidPlannerActivity {
-    if (-not $Global:LiquidPlannerCredentials -or $Global:LiquidPlannerToken) {
+    if ((Test-LiquidPlannerAuthIsSet) -eq $false) {
         'You need to set the Authorization with Set-LiquidPlannerAuthToken or Set-LiquidPlannerAuth'
         break
     }
