@@ -64,7 +64,7 @@ function Get-LiquidPlannerTask {
     Creates a new task with the name Testing and a description saying Just a test
 .EXAMPLE
     New-LiquidPlannerTask -Name 'Testing' -Description 'Just a test' -PersonId '0'
-    Creates a new task with the name Testing and a description saying Just a test, will assign to Id 0 (unassigned)
+    Creates a new task with the name Testing and a description saying Just a test, will assign to Person Id 0 (unassigned)
 #>
 function New-LiquidPlannerTask {
     Param (
