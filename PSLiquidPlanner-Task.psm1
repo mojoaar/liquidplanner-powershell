@@ -117,3 +117,59 @@ function New-LiquidPlannerTask {
     }
     return $Result
 }
+
+<#
+.SYNOPSIS
+    Add a link to an existing task in the connected Liquid Planner URL
+.NOTES
+    You must have invoked Set-LiquidPlannerAuth or Set-LiquidPlannerAuthToken prior to executing this cmdlet
+.PARAMETER TaskId
+    Parameter to set the Task Id of the Liquid Planner task. Mandatory Parameter.
+.PARAMETER Url
+    Parameter to set Url of the destination link. Mandatory Parameter.
+.PARAMETER Description
+    Parameter to set Description of the link. Optional Parameter.
+.EXAMPLE
+    Add-LiquidPlannerTaskLink -TaskID '123456' -Url 'https://google.com'
+    Adds the link https://google.com to the task 123456
+.EXAMPLE
+    Add-LiquidPlannerTaskLink -TaskID '123456' -Url 'https://google.com' -Description 'Google is awesome!'
+    Adds the link https://google.com to the task 123456 and set's the Description to Google is awesome!
+#>
+function Add-LiquidPlannerTaskLink {
+    Param (
+        [Parameter(Mandatory=$true)]
+        [string] $TaskId,
+        [Parameter(Mandatory=$true)]
+        [string] $Url,
+        [Parameter(Mandatory=$false)]
+        [string] $Description
+    )
+    if ((Test-LiquidPlannerAuthIsSet) -eq $false) {
+        'You need to set the Authorization with Set-LiquidPlannerAuthToken or Set-LiquidPlannerAuth'
+        break
+    }
+    if (-not $Global:LiquidPlannerWorkspace) {
+        'You need to set the Workspace Id with Set-LiquidPlannerWorkspace'
+        break
+    }
+    $LinkURL = $Global:LiquidPlannerRESTURL + '/workspaces/' + $Global:LiquidPlannerWorkspace + '/links/'
+    $Body = @{
+        link = @{
+            item_id = "$TaskId"
+            url = "$Url"
+            description = "$Description"
+        }
+    }
+    $Body = ConvertTo-Json -InputObject $Body -Depth 10
+    if ($Global:LiquidPlannerToken) {
+        $Header = @{
+            Authorization = "Bearer $Global:LiquidPlannerToken"
+            Accept = "*/*"
+        }
+        $Result = Invoke-RestMethod -Method Post -Uri $LinkURL -ContentType "application/json" -Headers $Header -Body $Body
+    } else {
+        $Result = Invoke-RestMethod -Method Post -Uri $LinkURL -ContentType "application/json" -Credential $Global:LiquidPlannerCredentials -Body $Body
+    }
+    return $Result
+}
