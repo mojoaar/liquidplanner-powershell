@@ -57,16 +57,23 @@ function Get-LiquidPlannerTask {
     Parameter to set the name of the new Liquid Planner task. Mandatory Parameter.
 .PARAMETER Description
     Parameter to set the description of the new Liquid Planner task. Mandatory Parameter.
+.PARAMETER PersonId
+    Parameter to set assignment of the new Liquid Planner task. Optional Parameter.
 .EXAMPLE
     New-LiquidPlannerTask -Name 'Testing' -Description 'Just a test'
     Creates a new task with the name Testing and a description saying Just a test
+.EXAMPLE
+    New-LiquidPlannerTask -Name 'Testing' -Description 'Just a test' -PersonId '0'
+    Creates a new task with the name Testing and a description saying Just a test, will assign to Id 0 (unassigned)
 #>
 function New-LiquidPlannerTask {
     Param (
         [Parameter(Mandatory=$true)]
         [string] $Name,
         [Parameter(Mandatory=$true)]
-        [string] $Description
+        [string] $Description,
+        [Parameter(Mandatory=$false)]
+        [string] $PersonId
     )
     if ((Test-LiquidPlannerAuthIsSet) -eq $false) {
         'You need to set the Authorization with Set-LiquidPlannerAuthToken or Set-LiquidPlannerAuth'
@@ -77,11 +84,23 @@ function New-LiquidPlannerTask {
         break
     }
     $TaskURL = $Global:LiquidPlannerRESTURL + '/workspaces/' + $Global:LiquidPlannerWorkspace + '/tasks/'
+    if ($PersonId) {
+    $Body = @{
+        task = @{
+            name = "$Name"
+            description = "$Description"
+                assignments = @(@{
+                    person_id = "$PersonId"
+                })
+        }
+    }
+    } else {
     $Body = @{
         task = @{
             name = "$Name"
             description = "$Description"
         }
+    }
     }
     $Body = ConvertTo-Json -InputObject $Body -Depth 10
     if ($Global:LiquidPlannerToken) {
