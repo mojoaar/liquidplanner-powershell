@@ -61,7 +61,7 @@ function Get-LiquidPlannerTask {
     Parameter to set assignment of the new Liquid Planner task. Optional Parameter.
 .EXAMPLE
     New-LiquidPlannerTask -Name 'Testing' -Description 'Just a test'
-    Creates a new task with the name Testing and a description saying Just a test
+    Creates a new task with the name Testing and a description saying Just a test, will set the assignment to unassigned
 .EXAMPLE
     New-LiquidPlannerTask -Name 'Testing' -Description 'Just a test' -PersonId '0'
     Creates a new task with the name Testing and a description saying Just a test, will assign to Person Id 0 (unassigned)
@@ -99,6 +99,9 @@ function New-LiquidPlannerTask {
         task = @{
             name = "$Name"
             description = "$Description"
+                assignments = @(@{
+                    person_id = "0"
+                })
         }
     }
     }
