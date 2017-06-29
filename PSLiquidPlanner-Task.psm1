@@ -59,12 +59,17 @@ function Get-LiquidPlannerTask {
     Parameter to set the description of the new Liquid Planner task. Mandatory Parameter.
 .PARAMETER PersonId
     Parameter to set assignment of the new Liquid Planner task. Optional Parameter.
+.PARAMETER Reference
+    Parameter to set the external_reference field of the new Liquid Planner task. Optional Parameter.
 .EXAMPLE
     New-LiquidPlannerTask -Name 'Testing' -Description 'Just a test'
     Creates a new task with the name Testing and a description saying Just a test, will set the assignment to unassigned
 .EXAMPLE
     New-LiquidPlannerTask -Name 'Testing' -Description 'Just a test' -PersonId '0'
     Creates a new task with the name Testing and a description saying Just a test, will assign to Person Id 0 (unassigned)
+.EXAMPLE
+    New-LiquidPlannerTask -Name 'Testing' -Description 'Just a test' -Reference 'Ref Test'
+    Creates a new task with the name Testing and a description saying Just a test, will set the reference to Ref Test
 #>
 function New-LiquidPlannerTask {
     Param (
@@ -73,7 +78,9 @@ function New-LiquidPlannerTask {
         [Parameter(Mandatory=$true)]
         [string] $Description,
         [Parameter(Mandatory=$false)]
-        [string] $PersonId
+        [string] $PersonId,
+        [Parameter(Mandatory=$false)]
+        [string] $Reference
     )
     if ((Test-LiquidPlannerAuthIsSet) -eq $false) {
         'You need to set the Authorization with Set-LiquidPlannerAuthToken or Set-LiquidPlannerAuth'
@@ -89,6 +96,7 @@ function New-LiquidPlannerTask {
         task = @{
             name = "$Name"
             description = "$Description"
+            external_reference = "$Reference"
                 assignments = @(@{
                     person_id = "$PersonId"
                 })
@@ -99,6 +107,7 @@ function New-LiquidPlannerTask {
         task = @{
             name = "$Name"
             description = "$Description"
+            external_reference = "$Reference"
                 assignments = @(@{
                     person_id = "0"
                 })
