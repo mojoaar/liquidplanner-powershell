@@ -115,6 +115,7 @@ function New-LiquidPlannerTask {
     }
     }
     $Body = ConvertTo-Json -InputObject $Body -Depth 10
+    $Body = [System.Text.Encoding]::UTf8.GetBytes($Body)
     if ($Global:LiquidPlannerToken) {
         $Header = @{
             Authorization = "Bearer $Global:LiquidPlannerToken"
@@ -171,6 +172,7 @@ function Add-LiquidPlannerTaskLink {
         }
     }
     $Body = ConvertTo-Json -InputObject $Body -Depth 10
+    $Body = [System.Text.Encoding]::UTf8.GetBytes($Body)
     if ($Global:LiquidPlannerToken) {
         $Header = @{
             Authorization = "Bearer $Global:LiquidPlannerToken"
