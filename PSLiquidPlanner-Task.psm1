@@ -184,3 +184,51 @@ function Add-LiquidPlannerTaskLink {
     }
     return $Result
 }
+
+<#
+.SYNOPSIS
+    Add a comment to an existing task in the connected Liquid Planner URL
+.NOTES
+    You must have invoked Set-LiquidPlannerAuth or Set-LiquidPlannerAuthToken prior to executing this cmdlet
+.PARAMETER TaskId
+    Parameter to use for the Task Id of the Liquid Planner task. Mandatory Parameter.
+.PARAMETER Comment
+    Parameter for the comment to send to the Liquid Planner task. Mandatory Parameter.
+.EXAMPLE
+    Add-LiquidPlanerTaskComment -TaskId '39393798' -Comment 'Task comment test'
+    Will add a comment to task 39393798 saying Task comment test
+#>
+function Add-LiquidPlanerTaskComment {
+    Param (
+        [Parameter(Mandatory=$true)]
+        [string] $TaskId,
+        [Parameter(Mandatory=$true)]
+        [string] $Comment
+    )
+    if ((Test-LiquidPlannerAuthIsSet) -eq $false) {
+        'You need to set the Authorization with Set-LiquidPlannerAuthToken or Set-LiquidPlannerAuth'
+        break
+    }
+    if (-not $Global:LiquidPlannerWorkspace) {
+        'You need to set the Workspace Id with Set-LiquidPlannerWorkspace'
+        break
+    }
+    $TaskCommentURL = $Global:LiquidPlannerRESTURL + '/workspaces/' + $Global:LiquidPlannerWorkspace + '/tasks/' + $TaskId + '/comments'
+    $Body = @{
+        comment = @{
+            comment = "$Comment"
+        }
+    }
+    $Body = ConvertTo-Json -InputObject $Body -Depth 10
+    $Body = [System.Text.Encoding]::UTf8.GetBytes($Body)
+    if ($Global:LiquidPlannerToken) {
+        $Header = @{
+            Authorization = "Bearer $Global:LiquidPlannerToken"
+            Accept = "*/*"
+        }
+        $Result = Invoke-RestMethod -Method Post -Uri $TaskCommentURL -ContentType "application/json" -Headers $Header -Body $Body
+    } else {
+        $Result = Invoke-RestMethod -Method Post -Uri $TaskCommentURL -ContentType "application/json" -Credential $Global:LiquidPlannerCredentials -Body $Body
+    }
+    return $Result
+}
