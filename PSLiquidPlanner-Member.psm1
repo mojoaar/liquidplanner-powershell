@@ -7,7 +7,7 @@
     Parameter to specify the id to search for. Operator is a contains condition. Optional Parameter.
 .EXAMPLE
     Get-LiquidPlannerMember
-    Get all members in from the connected Liquid Planner URL
+    Get all members from the connected Liquid Planner URL
 .EXAMPLE
     Get-LiquidPlannerMember -Id '699656'
     Return the member with the id 699656
