@@ -10,6 +10,7 @@ Download the [latest release](https://github.com/mgjohansen/liquidplanner-powers
 Once you've done this, all the cmdlets will be at your disposal, you can see a full list using `Get-Command -Module PSLiquidPlanner`. Remember to run Set-LiquidPlannerAuthToken & Set-LiquidPlannerWorkspace before beginning to work in your environment.
 
 ## Cmdlets
+* Add-LiquidPlanerTaskComment
 * Add-LiquidPlannerTaskLink
 * Get-LiquidPlannerActivity
 * Get-LiquidPlannerClient
@@ -26,4 +27,4 @@ Once you've done this, all the cmdlets will be at your disposal, you can see a f
 * Test-LiquidPlannerWorkspaceIdIsSet
 
 ## Author
-Author: Morten G. Johansen (<morten@glerupjohansen.dk>)
+Author: Morten G. Johansen (<morten@glerupjohansen.dk>) // [Twitter](https://twitter.com/mgjohansen)
