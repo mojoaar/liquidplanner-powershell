@@ -15,8 +15,10 @@ Once you've done this, all the cmdlets will be at your disposal, you can see a f
 * Get-LiquidPlannerActivity
 * Get-LiquidPlannerClient
 * Get-LiquidPlannerMember
+* Get-LiquidPlannerProject
 * Get-LiquidPlannerTask
 * Get-LiquidPlannerWorkspace
+* New-LiquidPlannerProject
 * New-LiquidPlannerTask
 * Remove-LiquidPlannerEnvironment
 * Set-LiquidPlannerAuth
