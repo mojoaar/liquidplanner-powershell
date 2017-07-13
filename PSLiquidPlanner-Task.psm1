@@ -61,6 +61,8 @@ function Get-LiquidPlannerTask {
     Parameter to set assignment of the new Liquid Planner task. Optional Parameter.
 .PARAMETER Reference
     Parameter to set the external_reference field of the new Liquid Planner task. Optional Parameter.
+.PARAMETER ParentId
+    Parameter to set the parent_id field of the new Liquid Planner task. Optional Parameter.
 .EXAMPLE
     New-LiquidPlannerTask -Name 'Testing' -Description 'Just a test'
     Creates a new task with the name Testing and a description saying Just a test, will set the assignment to unassigned
@@ -80,7 +82,9 @@ function New-LiquidPlannerTask {
         [Parameter(Mandatory=$false)]
         [string] $PersonId,
         [Parameter(Mandatory=$false)]
-        [string] $Reference
+        [string] $Reference,
+        [Parameter(Mandatory=$false)]
+        [string] $ParentId
     )
     if ((Test-LiquidPlannerAuthIsSet) -eq $false) {
         'You need to set the Authorization with Set-LiquidPlannerAuthToken or Set-LiquidPlannerAuth'
@@ -97,6 +101,7 @@ function New-LiquidPlannerTask {
             name = "$Name"
             description = "$Description"
             external_reference = "$Reference"
+            parent_id = "$ParentId"
                 assignments = @(@{
                     person_id = "$PersonId"
                 })
@@ -108,6 +113,7 @@ function New-LiquidPlannerTask {
             name = "$Name"
             description = "$Description"
             external_reference = "$Reference"
+            parent_id = "$ParentId"
                 assignments = @(@{
                     person_id = "0"
                 })
