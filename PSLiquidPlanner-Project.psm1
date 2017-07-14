@@ -145,3 +145,51 @@ function New-LiquidPlannerProject {
     }
     return $Result
 }
+
+<#
+.SYNOPSIS
+    Add a comment to an existing project in the connected Liquid Planner URL
+.NOTES
+    You must have invoked Set-LiquidPlannerAuth or Set-LiquidPlannerAuthToken prior to executing this cmdlet
+.PARAMETER ProjectId
+    Parameter to use for the Project Id of the Liquid Planner project. Mandatory Parameter.
+.PARAMETER Comment
+    Parameter for the comment to send to the Liquid Planner project. Mandatory Parameter.
+.EXAMPLE
+    Add-LiquidPlanerProjectComment -ProjectId '39393798' -Comment 'Project comment test'
+    Will add a comment to project 39393798 saying Project comment test
+#>
+function Add-LiquidPlanerProjectComment {
+    Param (
+        [Parameter(Mandatory=$true)]
+        [string] $ProjectId,
+        [Parameter(Mandatory=$true)]
+        [string] $Comment
+    )
+    if ((Test-LiquidPlannerAuthIsSet) -eq $false) {
+        'You need to set the Authorization with Set-LiquidPlannerAuthToken or Set-LiquidPlannerAuth'
+        break
+    }
+    if (-not $Global:LiquidPlannerWorkspace) {
+        'You need to set the Workspace Id with Set-LiquidPlannerWorkspace'
+        break
+    }
+    $ProjectCommentURL = $Global:LiquidPlannerRESTURL + '/workspaces/' + $Global:LiquidPlannerWorkspace + '/projects/' + $ProjectId + '/comments'
+    $Body = @{
+        comment = @{
+            comment = "$Comment"
+        }
+    }
+    $Body = ConvertTo-Json -InputObject $Body -Depth 10
+    $Body = [System.Text.Encoding]::UTf8.GetBytes($Body)
+    if ($Global:LiquidPlannerToken) {
+        $Header = @{
+            Authorization = "Bearer $Global:LiquidPlannerToken"
+            Accept = "*/*"
+        }
+        $Result = Invoke-RestMethod -Method Post -Uri $ProjectCommentURL -ContentType "application/json" -Headers $Header -Body $Body
+    } else {
+        $Result = Invoke-RestMethod -Method Post -Uri $ProjectCommentURL -ContentType "application/json" -Credential $Global:LiquidPlannerCredentials -Body $Body
+    }
+    return $Result
+}
