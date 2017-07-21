@@ -159,7 +159,7 @@ function New-LiquidPlannerProject {
     Add-LiquidPlanerProjectComment -ProjectId '39393798' -Comment 'Project comment test'
     Will add a comment to project 39393798 saying Project comment test
 #>
-function Add-LiquidPlanerProjectComment {
+function Add-LiquidPlannerProjectComment {
     Param (
         [Parameter(Mandatory=$true)]
         [string] $ProjectId,

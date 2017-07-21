@@ -204,7 +204,7 @@ function Add-LiquidPlannerTaskLink {
     Add-LiquidPlanerTaskComment -TaskId '39393798' -Comment 'Task comment test'
     Will add a comment to task 39393798 saying Task comment test
 #>
-function Add-LiquidPlanerTaskComment {
+function Add-LiquidPlannerTaskComment {
     Param (
         [Parameter(Mandatory=$true)]
         [string] $TaskId,
